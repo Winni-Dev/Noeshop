@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Noéshop - Vos produits préférés au meilleur prix à Abidjan</title>
+    <meta name="description" content="Noéshop : vente de produits naturels à Abidjan. Découvrez Sève de Vie pour soulager vos douleurs articulaires et SlimBreathe pour un ventre plat. Livraison offerte à Abidjan." />
+    <meta name="keywords" content="Noéshop, Sève de Vie, SlimBreathe, douleurs articulaires, ventre plat, produits naturels Abidjan, bien-être Côte d'Ivoire" />
+    <meta name="author" content="Noéshop" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Noéshop - Vos produits préférés au meilleur prix à Abidjan" />
+    <meta property="og:description" content="Sève de Vie : soulage les douleurs articulaires. SlimBreathe : ventre plat et tonus du périnée. Livraison offerte à Abidjan." />
+    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:url" content="https://noeshop.ci/" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Noéshop - Vos produits préférés au meilleur prix à Abidjan" />
+    <meta name="twitter:description" content="Sève de Vie et SlimBreathe pour votre bien-être au quotidien. Livraison offerte à Abidjan." />
+    <meta name="twitter:image" content="/og-image.jpg" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://noeshop.ci/" />
+    
+    <!-- Preconnect for fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Basic Styles -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        background-color: #fefaf5;
+        color: #1f2937;
+      }
+      
+      #root {
+        min-height: 100vh;
+      }
+    </style>
+    
+    <!-- Structured Data - Local Business -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Noéshop",
+      "description": "Vos produits préférés au meilleur prix à Abidjan. Vente de Sève de Vie et SlimBreathe pour votre bien-être.",
+      "url": "https://noeshop.ci/",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Abidjan",
+        "addressCountry": "CI"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+2250712681195",
+        "contactType": "customer service"
+      }
+    }
+    </script>
+    
+    <!-- Structured Data - Products -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Sève de Vie",
+      "description": "Poudre naturelle en gélules qui soulage les douleurs articulaires, de dos et de nerfs en 24h. 0 pics glycémiques, 0 prise de poids, 100% naturel.",
+      "offers": {
+        "@type": "Offer",
+        "price": "13000",
+        "priceCurrency": "XOF",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "SlimBreathe",
+      "description": "Appareil de gymnastique respiratoire hypopressive pour ventre plat et tonus du périnée. Écran intelligent avec suivi en temps réel.",
+      "offers": {
+        "@type": "Offer",
+        "price": "12000",
+        "priceCurrency": "XOF",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+    </script>
+    
+    <!-- Meta Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '');
+      fbq('track', 'PageView');
+    </script>
+    <!-- End Meta Pixel Code -->
+    
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Meta Pixel Noscript - Placed in body instead of head -->
+    <noscript>
+      <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1" />
+    </noscript>
+  </body>
+</html>
