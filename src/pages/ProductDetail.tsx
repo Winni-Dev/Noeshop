@@ -14,13 +14,16 @@
 //   Truck,
 //   Shield,
 //   Star,
-//   Heart,
 //   Zap,
-//   Leaf,
-//   Sparkles,
 //   ShoppingCart,
 //   Minus,
-//   Plus
+//   Plus,
+//   Timer,
+//   Gauge,
+//   Wind,
+//   Brain,
+//   Baby,
+//   AirVent
 // } from 'lucide-react';
 
 // // Import testimonial images
@@ -55,17 +58,16 @@
 //   const [isImageLoading, setIsImageLoading] = useState(true);
 
 //   // Testimonial and proof images based on product
-//   const testimonialImages = product?.id === 1 ? [TE1, TE2, TE3, TE4, TE5, TE6, TE7] : [TE4, TE5, TE6, TE7];
+//   const testimonialImages = [TE1, TE2, TE3, TE4, TE5, TE6, TE7];
 //   const proofImages = [P1, P2, P3, P4, P5, P6, P7, P8, P9, P10];
 
 //   // Auto-rotate testimonial carousel
 //   useEffect(() => {
-//     if (product?.id !== 1) return;
 //     const interval = setInterval(() => {
 //       setCurrentTestimonialIndex((prev) => (prev + 1) % testimonialImages.length);
 //     }, 5000);
 //     return () => clearInterval(interval);
-//   }, [testimonialImages.length, product?.id]);
+//   }, [testimonialImages.length]);
 
 //   // Auto-rotate proof carousel for all products
 //   useEffect(() => {
@@ -151,9 +153,11 @@
 //               }`}
 //               onLoad={() => setIsImageLoading(false)}
 //             />
-//             <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-full">
-//               <span className="text-xs font-semibold text-primary-600">Nouveau</span>
-//             </div>
+//             {product.badge && (
+//               <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-full">
+//                 <span className="text-xs font-semibold text-primary-600">{product.badge}</span>
+//               </div>
+//             )}
 //           </div>
 
 //           {/* Product Info */}
@@ -168,7 +172,7 @@
 //                   <Star key={star} className="w-4 h-4 text-yellow-400 fill-current" />
 //                 ))}
 //               </div>
-//               <span className="text-gray-600 text-xs">4.8 (2.5k+ avis)</span>
+//               <span className="text-gray-600 text-xs">4.9 (3.2k+ avis)</span>
 //             </div>
 
 //             {/* Price */}
@@ -180,14 +184,18 @@
 //                     <p className="text-xl font-bold text-primary-600">
 //                       {product.price.toLocaleString()} FCFA
 //                     </p>
-//                     <span className="text-xs text-gray-500 line-through">
-//                       {(product.price * 1.3).toLocaleString()} FCFA
-//                     </span>
 //                   </div>
 //                 </div>
-//                 <div className="bg-green-100 text-green-800 px-2 py-1 rounded-lg">
-//                   <p className="text-xs font-semibold">-30%</p>
-//                 </div>
+//                 {product.id === 1 && (
+//                   <div className="bg-green-100 text-green-800 px-2 py-1 rounded-lg">
+//                     <p className="text-xs font-semibold">Cure 1 mois</p>
+//                   </div>
+//                 )}
+//                 {product.id === 2 && (
+//                   <div className="bg-teal-100 text-teal-800 px-2 py-1 rounded-lg">
+//                     <p className="text-xs font-semibold">Écran intelligent</p>
+//                   </div>
+//                 )}
 //               </div>
 //             </div>
 
@@ -222,7 +230,9 @@
 //                   <p className="text-xl font-bold text-primary-600">
 //                     {(product.price * quantity).toLocaleString()} FCFA
 //                   </p>
-//                   <p className="text-xs text-gray-500">Livraison incluse</p>
+//                   <p className="text-xs text-gray-500">
+//                     {product.id === 1 ? 'Livraison offerte à Abidjan' : 'Livraison partout à Abidjan'}
+//                   </p>
 //                 </div>
 //               </div>
 
@@ -240,15 +250,15 @@
 //               <div className="grid grid-cols-3 gap-2 mt-4">
 //                 <div className="bg-gray-50 rounded-lg p-2 text-center">
 //                   <Truck className="w-4 h-4 text-primary-600 mx-auto mb-1" />
-//                   <p className="text-xs text-gray-700">2-5 jours</p>
+//                   <p className="text-xs text-gray-700">24h à Abidjan</p>
 //                 </div>
 //                 <div className="bg-gray-50 rounded-lg p-2 text-center">
 //                   <Shield className="w-4 h-4 text-primary-600 mx-auto mb-1" />
-//                   <p className="text-xs text-gray-700">Sécurisé</p>
+//                   <p className="text-xs text-gray-700">Paiement sécurisé</p>
 //                 </div>
 //                 <div className="bg-gray-50 rounded-lg p-2 text-center">
 //                   <CheckCircle className="w-4 h-4 text-primary-600 mx-auto mb-1" />
-//                   <p className="text-xs text-gray-700">Garanti</p>
+//                   <p className="text-xs text-gray-700">Garantie 30j</p>
 //                 </div>
 //               </div>
 //             </div>
@@ -271,16 +281,20 @@
 //                 }`}
 //                 onLoad={() => setIsImageLoading(false)}
 //               />
-//               <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full">
-//                 <span className="text-sm font-semibold text-primary-600">Nouveau</span>
-//               </div>
+//               {product.badge && (
+//                 <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full">
+//                   <span className="text-sm font-semibold text-primary-600">{product.badge}</span>
+//                 </div>
+//               )}
 //             </div>
             
 //             {/* Trust Badges */}
 //             <div className="grid grid-cols-3 gap-3 p-4">
 //               <div className="bg-gray-50 rounded-xl p-3 text-center">
 //                 <Truck className="w-6 h-6 text-primary-600 mx-auto mb-1" />
-//                 <p className="text-xs font-medium text-gray-700">Livraison rapide</p>
+//                 <p className="text-xs font-medium text-gray-700">
+//                   {product.id === 1 ? 'Livraison offerte' : 'Livraison rapide'}
+//                 </p>
 //               </div>
 //               <div className="bg-gray-50 rounded-xl p-3 text-center">
 //                 <Shield className="w-6 h-6 text-primary-600 mx-auto mb-1" />
@@ -308,7 +322,7 @@
 //                       <Star key={star} className="w-5 h-5 text-yellow-400 fill-current" />
 //                     ))}
 //                   </div>
-//                   <span className="text-gray-600 font-medium">4.8 (2.5k+ avis)</span>
+//                   <span className="text-gray-600 font-medium">4.9 (3.2k+ avis)</span>
 //                 </div>
 //               </div>
 
@@ -321,14 +335,21 @@
 //                       <p className="text-2xl font-bold text-primary-600">
 //                         {product.price.toLocaleString()} FCFA
 //                       </p>
-//                       <span className="text-sm text-gray-500 line-through">
-//                         {(product.price * 1.3).toLocaleString()} FCFA
-//                       </span>
 //                     </div>
+//                     <p className="text-xs text-gray-500 mt-1">
+//                       {product.id === 1 ? 'Cure de 20 gélules (1 mois)' : 'Appareil avec écran intelligent'}
+//                     </p>
 //                   </div>
-//                   <div className="bg-green-100 text-green-800 px-3 py-2 rounded-lg">
-//                     <p className="text-sm font-semibold">Économisez 30%</p>
-//                   </div>
+//                   {product.id === 1 && (
+//                     <div className="bg-green-100 text-green-800 px-3 py-2 rounded-lg">
+//                       <p className="text-sm font-semibold">20 GÉLULES</p>
+//                     </div>
+//                   )}
+//                   {product.id === 2 && (
+//                     <div className="bg-teal-100 text-teal-800 px-3 py-2 rounded-lg">
+//                       <p className="text-sm font-semibold">Écran intelligent</p>
+//                     </div>
+//                   )}
 //                 </div>
 //               </div>
 
@@ -365,7 +386,9 @@
 //                         <p className="text-2xl font-bold text-primary-600">
 //                           {(product.price * quantity).toLocaleString()} FCFA
 //                         </p>
-//                         <p className="text-sm text-gray-500">Livraison incluse</p>
+//                         <p className="text-sm text-gray-500">
+//                           {product.id === 1 ? 'Livraison offerte à Abidjan' : 'Livraison partout à Abidjan'}
+//                         </p>
 //                       </div>
 //                     </div>
 //                   </div>
@@ -383,7 +406,7 @@
 
 //                   {/* Safety Message */}
 //                   <p className="text-center text-sm text-gray-500 mt-2">
-//                     Paiement 100% sécurisé • Livraison sous 2-5 jours
+//                     Paiement 100% sécurisé • Livraison sous 24h à Abidjan
 //                   </p>
 //                 </div>
 //               </div>
@@ -395,20 +418,18 @@
 //       {/* Product Description Sections */}
 //       <div className="max-w-4xl mx-auto px-4 pb-8">
 //         {product.id === 1 ? (
-//           <BraceletDescription />
+//           <SeveDeVieDescription />
 //         ) : (
-//           <CreamDescription />
+//           <SlimBreatheDescription />
 //         )}
 
-//         {/* Testimonials Section - Only for product 1 */}
-//         {product.id === 1 && (
-//           <TestimonialsSection
-//             images={testimonialImages}
-//             currentIndex={currentTestimonialIndex}
-//             onNext={nextTestimonial}
-//             onPrev={prevTestimonial}
-//           />
-//         )}
+//         {/* Testimonials Section */}
+//         <TestimonialsSection
+//           images={testimonialImages}
+//           currentIndex={currentTestimonialIndex}
+//           onNext={nextTestimonial}
+//           onPrev={prevTestimonial}
+//         />
 
 //         {/* Proof of Shipping Section */}
 //         <ProofSection
@@ -430,8 +451,8 @@
 //   );
 // };
 
-// // Sub-components for better organization
-// const BraceletDescription: React.FC = () => (
+// // Sève de Vie Description Component
+// const SeveDeVieDescription: React.FC = () => (
 //   <motion.div
 //     initial={{ opacity: 0, y: 20 }}
 //     whileInView={{ opacity: 1, y: 0 }}
@@ -440,19 +461,24 @@
 //   >
 //     <div className="p-5 lg:p-8">
 //       <div className="text-center mb-6 lg:mb-8">
-//         <h2 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2 lg:mb-3">Un équilibre retrouvé</h2>
-//         <p className="text-gray-600 text-sm lg:text-base">
-//           Découvrez comment notre bracelet harmonise votre bien-être au quotidien
+//         <h2 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2 lg:mb-3">Sève de Vie™</h2>
+//         <p className="text-gray-600 text-sm lg:text-base">Dites adieu aux douleurs articulaires en 24h</p>
+//       </div>
+
+//       {/* Hero Statement */}
+//       <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-4 lg:p-6 mb-6 lg:mb-8">
+//         <p className="text-base lg:text-lg font-semibold text-center text-gray-900">
+//           "Double action naturelle contre les douleurs de dos, de nerfs et d'articulations"
 //         </p>
 //       </div>
 
 //       {/* Benefits Grid */}
 //       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 lg:mb-8">
 //         {[
-//           { icon: Heart, title: "Circulation", benefits: ["Optimisation sanguine", "Oxygénation tissulaire"] },
-//           { icon: Zap, title: "Énergie", benefits: ["Fatigue réduite", "Récupération améliorée"] },
-//           { icon: Leaf, title: "Équilibre", benefits: ["Stress diminué", "Harmonie émotionnelle"] },
-//           { icon: Sparkles, title: "Design", benefits: ["Élégant et discret", "Adapté au quotidien"] },
+//           { icon: Timer, title: "Soulagement 24h", benefits: ["Action rapide", "Douleurs atténuées"] },
+//           { icon: Gauge, title: "0 Pics glycémiques", benefits: ["Dosage contrôlé", "Glycémie stable"] },
+//           { icon: Zap, title: "0 Prise de poids", benefits: ["Action naturelle", "Minceur préservée"] },
+//           { icon: Shield, title: "100% Naturel", benefits: ["Sans chimie", "Sans gonflement"] },
 //         ].map((benefit, index) => (
 //           <motion.div
 //             key={benefit.title}
@@ -460,10 +486,10 @@
 //             whileInView={{ opacity: 1, y: 0 }}
 //             viewport={{ once: true }}
 //             transition={{ delay: index * 0.1 }}
-//             className="bg-gradient-to-br from-white to-primary-50 rounded-xl p-4 shadow-sm"
+//             className="bg-gradient-to-br from-white to-amber-50 rounded-xl p-4 shadow-sm"
 //           >
-//             <div className="w-10 h-10 lg:w-12 lg:h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-3">
-//               <benefit.icon className="w-5 h-5 lg:w-6 lg:h-6 text-primary-600" />
+//             <div className="w-10 h-10 lg:w-12 lg:h-12 bg-amber-100 rounded-lg flex items-center justify-center mb-3">
+//               <benefit.icon className="w-5 h-5 lg:w-6 lg:h-6 text-amber-600" />
 //             </div>
 //             <h3 className="text-base lg:text-lg font-bold text-gray-900 mb-2">{benefit.title}</h3>
 //             <ul className="space-y-1">
@@ -478,27 +504,34 @@
 //         ))}
 //       </div>
 
-//       {/* Stats */}
-//       <div className="bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl p-5 lg:p-6 text-white">
-//         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
-//           {[
-//             { value: "2.5k+", label: "Clients satisfaits" },
-//             { value: "94%", label: "Amélioration" },
-//             { value: "30+", label: "Pays desservis" },
-//             { value: "24/7", label: "Support client" },
-//           ].map((stat) => (
-//             <div key={stat.label} className="text-center">
-//               <div className="text-xl lg:text-2xl font-bold mb-1">{stat.value}</div>
-//               <p className="text-primary-100 text-xs lg:text-sm">{stat.label}</p>
-//             </div>
-//           ))}
+//       {/* Key Features */}
+//       <div className="bg-gradient-to-r from-amber-600 to-orange-600 rounded-xl p-5 lg:p-6 text-white">
+//         <h3 className="text-lg font-bold mb-4 text-center">Cure complète 1 mois</h3>
+//         <div className="grid grid-cols-2 gap-4">
+//           <div className="text-center">
+//             <div className="text-2xl font-bold">20</div>
+//             <p className="text-amber-100 text-sm">Gélules</p>
+//           </div>
+//           <div className="text-center">
+//             <div className="text-2xl font-bold">24h</div>
+//             <p className="text-amber-100 text-sm">Soulagement</p>
+//           </div>
+//           <div className="text-center">
+//             <div className="text-2xl font-bold">100%</div>
+//             <p className="text-amber-100 text-sm">Naturel</p>
+//           </div>
+//           <div className="text-center">
+//             <div className="text-2xl font-bold">Offerte</div>
+//             <p className="text-amber-100 text-sm">Livraison Abidjan</p>
+//           </div>
 //         </div>
 //       </div>
 //     </div>
 //   </motion.div>
 // );
 
-// const CreamDescription: React.FC = () => (
+// // SlimBreathe Description Component
+// const SlimBreatheDescription: React.FC = () => (
 //   <motion.div
 //     initial={{ opacity: 0, y: 20 }}
 //     whileInView={{ opacity: 1, y: 0 }}
@@ -507,72 +540,70 @@
 //   >
 //     <div className="p-5 lg:p-8">
 //       <div className="text-center mb-6 lg:mb-8">
-//         <h2 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2 lg:mb-3">Crème Noéva™</h2>
-//         <p className="text-gray-600 text-sm lg:text-base">Soulagement articulaire & rajeunissement cutané</p>
+//         <h2 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2 lg:mb-3">SlimBreathe™</h2>
+//         <p className="text-gray-600 text-sm lg:text-base">Ventre plat & tonus du périnée</p>
 //       </div>
 
 //       {/* Hero Statement */}
-//       <div className="bg-gradient-to-r from-primary-50 to-beige-50 rounded-xl p-4 lg:p-6 mb-6 lg:mb-8">
+//       <div className="bg-gradient-to-r from-teal-50 to-cyan-50 rounded-xl p-4 lg:p-6 mb-6 lg:mb-8">
 //         <p className="text-base lg:text-lg font-semibold text-center text-gray-900">
-//           "Un confort retrouvé au quotidien"
+//           "Retrouvez une silhouette affinée et une santé intime renforcée"
 //         </p>
 //       </div>
 
 //       {/* Features Grid */}
-//       <div className="grid md:grid-cols-3 gap-4 mb-6 lg:mb-8">
+//       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 lg:mb-8">
 //         {[
-//           {
-//             icon: "🌿",
-//             title: "Arnica",
-//             description: "Détente musculaire après l'effort",
-//             color: "from-green-50 to-white"
-//           },
-//           {
-//             icon: "💪",
-//             title: "Glucosamine",
-//             description: "Confort articulaire optimal",
-//             color: "from-blue-50 to-white"
-//           },
-//           {
-//             icon: "✨",
-//             title: "Vitamine K2",
-//             description: "Peau nourrie et souple",
-//             color: "from-purple-50 to-white"
-//           }
-//         ].map((feature) => (
-//           <div
+//           { icon: Wind, title: "Respiration Hypopressive", benefits: ["Muscles profonds", "Ventre plat"] },
+//           { icon: Baby, title: "Rééducation du Périnée", benefits: ["Idéal post-accouchement", "Tonus renforcé"] },
+//           { icon: AirVent, title: "Capacité Respiratoire", benefits: ["Souffle amélioré", "Endurance physique"] },
+//           { icon: Brain, title: "Écran Intelligent", benefits: ["Suivi en temps réel", "Compteur automatique"] },
+//         ].map((feature, index) => (
+//           <motion.div
 //             key={feature.title}
-//             className={`bg-gradient-to-br ${feature.color} rounded-xl p-4 shadow-sm border border-gray-100`}
+//             initial={{ opacity: 0, y: 10 }}
+//             whileInView={{ opacity: 1, y: 0 }}
+//             viewport={{ once: true }}
+//             transition={{ delay: index * 0.1 }}
+//             className="bg-gradient-to-br from-white to-teal-50 rounded-xl p-4 shadow-sm"
 //           >
-//             <div className="text-3xl mb-3">{feature.icon}</div>
+//             <div className="w-10 h-10 lg:w-12 lg:h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-3">
+//               <feature.icon className="w-5 h-5 lg:w-6 lg:h-6 text-teal-600" />
+//             </div>
 //             <h3 className="text-base lg:text-lg font-bold text-gray-900 mb-2">{feature.title}</h3>
-//             <p className="text-gray-600 text-sm lg:text-base">{feature.description}</p>
-//           </div>
+//             <ul className="space-y-1">
+//               {feature.benefits.map((item, idx) => (
+//                 <li key={idx} className="flex items-center text-sm text-gray-600">
+//                   <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-green-500 mr-2 flex-shrink-0" />
+//                   <span>{item}</span>
+//                 </li>
+//               ))}
+//             </ul>
+//           </motion.div>
 //         ))}
 //       </div>
 
-//       {/* How it works */}
-//       <div className="space-y-4">
-//         <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-4">Mode d'action</h3>
-//         {[
-//           { step: "01", title: "Effet chauffant", description: "Augmente la circulation sanguine locale" },
-//           { step: "02", title: "Anti-inflammatoire", description: "Réduit les cytokines pro-inflammatoires" },
-//           { step: "03", title: "Soulagement rapide", description: "Diminue l'ankylose et améliore la mobilité" },
-//           { step: "04", title: "Soins anti-âge", description: "Effets liftants et raffermissants" },
-//         ].map((step) => (
-//           <div
-//             key={step.step}
-//             className="flex items-start space-x-4 p-3 hover:bg-gray-50 rounded-lg transition-colors"
-//           >
-//             <div className="flex-shrink-0 w-8 h-8 lg:w-10 lg:h-10 bg-primary-600 rounded-lg flex items-center justify-center">
-//               <span className="text-white font-bold text-sm">{step.step}</span>
-//             </div>
-//             <div>
-//               <h4 className="text-base font-bold text-gray-900 mb-1">{step.title}</h4>
-//               <p className="text-gray-600 text-sm lg:text-base">{step.description}</p>
-//             </div>
+//       {/* Key Features */}
+//       <div className="bg-gradient-to-r from-teal-600 to-cyan-600 rounded-xl p-5 lg:p-6 text-white">
+//         <h3 className="text-lg font-bold mb-4 text-center">Pourquoi vous allez l'adorer</h3>
+//         <div className="grid grid-cols-2 gap-4">
+//           <div className="text-center">
+//             <div className="text-2xl font-bold">Ventre Plat</div>
+//             <p className="text-teal-100 text-sm">Cible le bas-ventre</p>
 //           </div>
-//         ))}
+//           <div className="text-center">
+//             <div className="text-2xl font-bold">Périnée</div>
+//             <p className="text-teal-100 text-sm">Tonus renforcé</p>
+//           </div>
+//           <div className="text-center">
+//             <div className="text-2xl font-bold">Écran</div>
+//             <p className="text-teal-100 text-sm">Suivi intelligent</p>
+//           </div>
+//           <div className="text-center">
+//             <div className="text-2xl font-bold">12k FCFA</div>
+//             <p className="text-teal-100 text-sm">Livraison incluse</p>
+//           </div>
+//         </div>
 //       </div>
 //     </div>
 //   </motion.div>
@@ -648,7 +679,7 @@
 //   >
 //     <div className="text-center mb-4 lg:mb-6">
 //       <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-1 lg:mb-2">Livraisons confirmées</h3>
-//       <p className="text-gray-600 text-sm lg:text-base">Preuves d'expédition à travers le monde</p>
+//       <p className="text-gray-600 text-sm lg:text-base">Preuves d'expédition à travers la Côte d'Ivoire</p>
 //     </div>
     
 //     <div className="relative bg-gradient-to-br from-beige-50 to-white rounded-2xl overflow-hidden shadow-lg max-w-2xl mx-auto">
@@ -689,7 +720,7 @@
 //           </div>
 //           <div className="flex items-center space-x-1 text-green-600">
 //             <CheckCircle size={16} />
-//             <span className="font-medium text-sm">Livré</span>
+//             <span className="font-medium text-sm">Livré à Abidjan</span>
 //           </div>
 //         </div>
 //       </div>
@@ -726,15 +757,6 @@ import {
   AirVent
 } from 'lucide-react';
 
-// Import testimonial images
-import TE1 from '../IMAGES/TE1.jpg';
-import TE2 from '../IMAGES/TE2.jpg';
-import TE3 from '../IMAGES/TE3.jpg';
-import TE4 from '../IMAGES/TE4.jpg';
-import TE5 from '../IMAGES/TE5.jpg';
-import TE6 from '../IMAGES/TE6.jpg';
-import TE7 from '../IMAGES/TE7.jpg';
-
 // Import proof of shipping images
 import P1 from '../IMAGES/P1.jpeg';
 import P2 from '../IMAGES/P2.jpeg';
@@ -753,21 +775,10 @@ const ProductDetail: React.FC = () => {
   const product = products.find((p) => p.id === Number(id));
   const [quantity, setQuantity] = useState(1);
   const [isOrderFormOpen, setIsOrderFormOpen] = useState(false);
-  const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0);
   const [currentProofIndex, setCurrentProofIndex] = useState(0);
   const [isImageLoading, setIsImageLoading] = useState(true);
 
-  // Testimonial and proof images based on product
-  const testimonialImages = [TE1, TE2, TE3, TE4, TE5, TE6, TE7];
   const proofImages = [P1, P2, P3, P4, P5, P6, P7, P8, P9, P10];
-
-  // Auto-rotate testimonial carousel
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTestimonialIndex((prev) => (prev + 1) % testimonialImages.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [testimonialImages.length]);
 
   // Auto-rotate proof carousel for all products
   useEffect(() => {
@@ -780,14 +791,6 @@ const ProductDetail: React.FC = () => {
   const handleOpenOrder = () => {
     setIsOrderFormOpen(true);
   };
-
-  const nextTestimonial = useCallback(() => {
-    setCurrentTestimonialIndex((prev) => (prev + 1) % testimonialImages.length);
-  }, [testimonialImages.length]);
-
-  const prevTestimonial = useCallback(() => {
-    setCurrentTestimonialIndex((prev) => (prev - 1 + testimonialImages.length) % testimonialImages.length);
-  }, [testimonialImages.length]);
 
   const nextProof = useCallback(() => {
     setCurrentProofIndex((prev) => (prev + 1) % proofImages.length);
@@ -885,10 +888,17 @@ const ProductDetail: React.FC = () => {
                       {product.price.toLocaleString()} FCFA
                     </p>
                   </div>
+                  {/* Mobile: Spécification 20 gélules pour Sève de Vie */}
+                  {product.id === 1 && (
+                    <p className="text-xs text-amber-600 font-semibold mt-1">✓ 20 gélules (1 mois de cure)</p>
+                  )}
+                  {product.id === 2 && (
+                    <p className="text-xs text-teal-600 font-semibold mt-1">✓ Écran intelligent avec compteur</p>
+                  )}
                 </div>
                 {product.id === 1 && (
                   <div className="bg-green-100 text-green-800 px-2 py-1 rounded-lg">
-                    <p className="text-xs font-semibold">Cure 1 mois</p>
+                    <p className="text-xs font-semibold">20 GÉLULES</p>
                   </div>
                 )}
                 {product.id === 2 && (
@@ -1123,14 +1133,6 @@ const ProductDetail: React.FC = () => {
           <SlimBreatheDescription />
         )}
 
-        {/* Testimonials Section */}
-        <TestimonialsSection
-          images={testimonialImages}
-          currentIndex={currentTestimonialIndex}
-          onNext={nextTestimonial}
-          onPrev={prevTestimonial}
-        />
-
         {/* Proof of Shipping Section */}
         <ProofSection
           images={proofImages}
@@ -1206,7 +1208,7 @@ const SeveDeVieDescription: React.FC = () => (
 
       {/* Key Features */}
       <div className="bg-gradient-to-r from-amber-600 to-orange-600 rounded-xl p-5 lg:p-6 text-white">
-        <h3 className="text-lg font-bold mb-4 text-center">Cure complète 1 mois</h3>
+        <h3 className="text-lg font-bold mb-4 text-center">Cure complète 1 mois - 20 gélules</h3>
         <div className="grid grid-cols-2 gap-4">
           <div className="text-center">
             <div className="text-2xl font-bold">20</div>
@@ -1304,62 +1306,6 @@ const SlimBreatheDescription: React.FC = () => (
             <p className="text-teal-100 text-sm">Livraison incluse</p>
           </div>
         </div>
-      </div>
-    </div>
-  </motion.div>
-);
-
-const TestimonialsSection: React.FC<{
-  images: string[];
-  currentIndex: number;
-  onNext: () => void;
-  onPrev: () => void;
-}> = ({ images, currentIndex, onNext, onPrev }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    className="mt-6 lg:mt-8"
-  >
-    <div className="text-center mb-4 lg:mb-6">
-      <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-1 lg:mb-2">Témoignages clients</h3>
-      <p className="text-gray-600 text-sm lg:text-base">Découvrez les retours de nos clients satisfaits</p>
-    </div>
-    
-    <div className="relative bg-gradient-to-br from-primary-50 to-white rounded-2xl overflow-hidden shadow-lg max-w-2xl mx-auto">
-      <AnimatePresence mode="wait">
-        <motion.img
-          key={currentIndex}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          src={images[currentIndex]}
-          alt="Témoignage client"
-          className="w-full h-[250px] lg:h-[300px] object-cover"
-        />
-      </AnimatePresence>
-      
-      {/* Navigation */}
-      <div className="absolute inset-0 flex items-center justify-between px-3 lg:px-4">
-        <button
-          onClick={onPrev}
-          className="w-8 h-8 lg:w-10 lg:h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-all shadow-md"
-        >
-          <ChevronLeft size={18} className="text-gray-900" />
-        </button>
-        <button
-          onClick={onNext}
-          className="w-8 h-8 lg:w-10 lg:h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-all shadow-md"
-        >
-          <ChevronRight size={18} className="text-gray-900" />
-        </button>
-      </div>
-      
-      {/* Counter */}
-      <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-full">
-        <p className="text-xs font-medium text-gray-900">
-          {currentIndex + 1}/{images.length}
-        </p>
       </div>
     </div>
   </motion.div>
