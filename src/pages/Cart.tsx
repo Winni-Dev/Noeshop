@@ -558,9 +558,16 @@ const CartPage: React.FC = () => {
                     <div className="flex-1 min-w-0">
                       <div className="flex justify-between items-start">
                         <div>
-                          <h3 className="font-medium text-gray-900 mb-1 line-clamp-1">
-                            {item.name}
-                          </h3>
+                          <div className="flex items-center gap-2 mb-1">
+                            <h3 className="font-medium text-gray-900 line-clamp-1">
+                              {item.name}
+                            </h3>
+                            {item.id === 1 && (
+                              <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-semibold whitespace-nowrap">
+                                20 gélules
+                              </span>
+                            )}
+                          </div>
                           <p className="text-sm text-gray-500 mb-3 line-clamp-2">
                             {item.description}
                           </p>
@@ -619,7 +626,14 @@ const CartPage: React.FC = () => {
                   {items.map(item => (
                     <div key={item.id} className="flex justify-between text-sm">
                       <div className="flex-1">
-                        <span className="text-gray-600">{item.name}</span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-gray-600">{item.name}</span>
+                          {item.id === 1 && (
+                            <span className="text-xs bg-green-100 text-green-700 px-1.5 py-0.5 rounded font-semibold">
+                              20 gélules
+                            </span>
+                          )}
+                        </div>
                         <span className="text-gray-400 ml-2">×{item.quantity}</span>
                       </div>
                       <span className="font-medium">
