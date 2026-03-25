@@ -4,7 +4,8 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, MapPin, Globe, Home, AlertCircle, CheckCircle, Info } from 'lucide-react';
 import { Product, OrderFormData } from '../types';
-import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import { trackOrderConfirmed, trackWhatsAppRedirect } from '../utils/metaPixel';
 
 interface ProductOrderFormProps {
   product: Product;
@@ -14,6 +15,7 @@ interface ProductOrderFormProps {
 }
 
 const ProductOrderForm: React.FC<ProductOrderFormProps> = ({ product, quantity, isOpen, onClose }) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<OrderFormData>({
     firstName: '',
     lastName: '',
@@ -35,41 +37,63 @@ const ProductOrderForm: React.FC<ProductOrderFormProps> = ({ product, quantity, 
     const unitPrice = getEffectivePrice();
     const total = unitPrice * quantity;
     
-    let locationLine = `📍 Localisation: ${getLocationText(formData.location)}%0A`;
+    let locationLine = `📍 Localisation: ${getLocationText(formData.location)}\n`;
     if (formData.location === 'abidjan') {
-      if (formData.city) locationLine += `🏙️ Commune: ${formData.city}%0A`;
-      if (formData.quartier) locationLine += `🏘️ Quartier: ${formData.quartier}%0A`;
-      locationLine += `📦 Livraison gratuite%0A`;
+      if (formData.city) locationLine += `🏙️ Commune: ${formData.city}\n`;
+      if (formData.quartier) locationLine += `🏘️ Quartier: ${formData.quartier}\n`;
+      locationLine += `📦 Livraison gratuite\n`;
     } else {
-      if (formData.city) locationLine += `🏙️ Ville: ${formData.city}%0A`;
-      if (formData.country) locationLine += `🌍 Pays: ${formData.country}%0A`;
+      if (formData.city) locationLine += `🏙️ Ville: ${formData.city}\n`;
+      if (formData.country) locationLine += `🌍 Pays: ${formData.country}\n`;
     }
     
-    // Format WhatsApp message
-    const message = `Nouvelle commande de produit !%0A%0A` +
-      `👤 Client: ${formData.firstName} ${formData.lastName}%0A` +
-      `📞 Téléphone: ${formData.phone}%0A` +
-      locationLine +
-      `%0A🛒 Commande:%0A` +
-      `- ${product.name} x${quantity}: ${formatPrice(total)}%0A` +
-      `%0A💰 Total: ${formatPrice(total)}%0A` +
-      `💳 Mode paiement: ${getPaymentMethod(formData.location)}%0A` +
-      (formData.notes ? `%0A📝 Notes: ${formData.notes}` : '');
+    const orderId =
+      typeof crypto !== 'undefined' && 'randomUUID' in crypto
+        ? crypto.randomUUID()
+        : `order_${Date.now()}`;
 
-    // Redirect to WhatsApp
-    window.open(`https://wa.me/+2250712681195?text=${message}`, '_blank');
+    const messageText =
+      `Nouvelle commande de produit !\n\n` +
+      `👤 Client: ${formData.firstName} ${formData.lastName}\n` +
+      `📞 Téléphone: ${formData.phone}\n` +
+      `🧾 Référence commande: ${orderId}\n` +
+      locationLine +
+      `\n🛒 Commande:\n` +
+      `- ${product.name} x${quantity}: ${formatPrice(total)}\n` +
+      `\n💰 Total: ${formatPrice(total)}\n` +
+      `💳 Mode paiement: ${getPaymentMethod(formData.location)}\n` +
+      (formData.notes ? `\n📝 Notes: ${formData.notes}` : '');
+
+    const whatsappUrl = `https://wa.me/2250712681195?text=${encodeURIComponent(messageText)}`;
+
+    // Stocke le contenu pour la page de confirmation (et pour garder un lien WhatsApp identique)
+    const pending = {
+      orderId,
+      messageText,
+      value: total,
+      currency: 'XOF',
+      contentIds: [String(product.id)],
+      contentName: product.name,
+      source: 'product_detail' as const,
+      paymentMethod: getPaymentMethod(formData.location),
+      location: getLocationText(formData.location),
+      phoneDestination: '+2250712681195',
+      metaTracked: true,
+    };
+    try {
+      sessionStorage.setItem('pending_whatsapp_order', JSON.stringify(pending));
+    } catch {
+      // ignore (ex: stockage désactivé)
+    }
+
+    // Pixel: commande validée (au moment exact du clic)
+    trackOrderConfirmed(pending);
+    trackWhatsAppRedirect(orderId, pending.phoneDestination);
+
+    // Redirect WhatsApp (nouvel onglet)
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
     
-    // Show success message
-    toast.success('Commande envoyée sur WhatsApp !', {
-      position: 'top-center',
-      style: {
-        borderRadius: '12px',
-        background: '#10B981',
-        color: '#fff',
-      },
-    });
-    
-    // Close form and reset
+    // Close form and reset (puis on affiche la page de confirmation)
     onClose();
     setFormData({
       firstName: '',
@@ -81,6 +105,8 @@ const ProductOrderForm: React.FC<ProductOrderFormProps> = ({ product, quantity, 
       quartier: '',
       notes: '',
     });
+
+    navigate(`/merci?orderId=${encodeURIComponent(orderId)}`);
   };
 
   const getLocationText = (location: string) => {

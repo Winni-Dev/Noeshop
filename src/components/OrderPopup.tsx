@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, MapPin, Globe, Home } from 'lucide-react';
 import { useCart } from '../hooks/useCart';
 import { OrderFormData } from '../types';
+import { useNavigate } from 'react-router-dom';
+import { trackOrderConfirmed, trackWhatsAppRedirect } from '../utils/metaPixel';
 
 interface OrderPopupProps {
   isOpen: boolean;
@@ -11,6 +13,7 @@ interface OrderPopupProps {
 
 const OrderPopup: React.FC<OrderPopupProps> = ({ isOpen, onClose }) => {
   const { items, clearCart } = useCart();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<OrderFormData>({
     firstName: '',
     lastName: '',
@@ -34,31 +37,65 @@ const OrderPopup: React.FC<OrderPopupProps> = ({ isOpen, onClose }) => {
     e.preventDefault();
     
     const totalDisplay = getTotalWithLocation();
-    let locationLine = `📍 Localisation: ${getLocationText(formData.location)}%0A`;
+    let locationLine = `📍 Localisation: ${getLocationText(formData.location)}\n`;
     if (formData.location === 'abidjan') {
-      if (formData.city) locationLine += `🏙️ Commune: ${formData.city}%0A`;
-      if (formData.quartier) locationLine += `🏘️ Quartier: ${formData.quartier}%0A`;
-      locationLine += `📦 Livraison gratuite%0A`;
+      if (formData.city) locationLine += `🏙️ Commune: ${formData.city}\n`;
+      if (formData.quartier) locationLine += `🏘️ Quartier: ${formData.quartier}\n`;
+      locationLine += `📦 Livraison gratuite\n`;
     } else {
-      if (formData.city) locationLine += `🏙️ Ville: ${formData.city}%0A`;
-      if (formData.country) locationLine += `🌍 Pays: ${formData.country}%0A`;
+      if (formData.city) locationLine += `🏙️ Ville: ${formData.city}\n`;
+      if (formData.country) locationLine += `🌍 Pays: ${formData.country}\n`;
     }
     
-    // Format WhatsApp message
-    const message = `Nouvelle commande !%0A%0A` +
-      `👤 Client: ${formData.firstName} ${formData.lastName}%0A` +
-      `📞 Téléphone: ${formData.phone}%0A` +
+    const orderId =
+      typeof crypto !== 'undefined' && 'randomUUID' in crypto
+        ? crypto.randomUUID()
+        : `order_${Date.now()}`;
+
+    const commandLines = items.map(
+      (item) => `- ${item.name} x${item.quantity}: ${formatPrice(getEffectivePrice(item) * item.quantity)}`
+    );
+
+    const messageText =
+      `Nouvelle commande !\n\n` +
+      `👤 Client: ${formData.firstName} ${formData.lastName}\n` +
+      `📞 Téléphone: ${formData.phone}\n` +
+      `🧾 Référence commande: ${orderId}\n` +
       locationLine +
-      `%0A🛒 Commande:%0A` +
-      items.map(item => `- ${item.name} x${item.quantity}: ${formatPrice(getEffectivePrice(item) * item.quantity)}`).join('%0A') +
-      `%0A%0A💰 Total: ${formatPrice(totalDisplay)}%0A` +
-      `💳 Mode paiement: ${getPaymentMethod(formData.location)}%0A` +
-      (formData.notes ? `%0A📝 Notes: ${formData.notes}` : '');
+      `\n🛒 Commande:\n` +
+      `${commandLines.join('\n')}\n` +
+      `\n💰 Total: ${formatPrice(totalDisplay)}\n` +
+      `💳 Mode paiement: ${getPaymentMethod(formData.location)}\n` +
+      (formData.notes ? `\n📝 Notes: ${formData.notes}` : '');
+
+    const whatsappUrl = `https://wa.me/2250712681195?text=${encodeURIComponent(messageText)}`;
+
+    const pending = {
+      orderId,
+      messageText,
+      value: totalDisplay,
+      currency: 'XOF',
+      contentIds: items.map((item) => String(item.id)),
+      contentName: items[0]?.name,
+      source: 'cart' as const,
+      paymentMethod: getPaymentMethod(formData.location),
+      location: getLocationText(formData.location),
+      phoneDestination: '+2250712681195',
+      metaTracked: true,
+    };
+    try {
+      sessionStorage.setItem('pending_whatsapp_order', JSON.stringify(pending));
+    } catch {
+      // ignore (stockage désactivé)
+    }
+
+    // Pixel: commande validée (au moment exact du clic)
+    trackOrderConfirmed(pending);
+    trackWhatsAppRedirect(orderId, pending.phoneDestination);
 
     // Redirect to WhatsApp
-    window.open(`https://wa.me/+2250712681195?text=${message}`, '_blank');
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
     
-    // Clear cart and close popup
     clearCart();
     onClose();
     
@@ -73,6 +110,8 @@ const OrderPopup: React.FC<OrderPopupProps> = ({ isOpen, onClose }) => {
       quartier: '',
       notes: '',
     });
+
+    navigate(`/merci?orderId=${encodeURIComponent(orderId)}&source=cart`);
   };
 
   const getLocationText = (location: string) => {

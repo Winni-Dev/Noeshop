@@ -7,6 +7,7 @@ import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
 import Contact from './pages/Contact';
+import OrderThanks from './pages/OrderThanks';
 import React, { Suspense } from 'react';
 const ProductDetail = React.lazy(() => import('./pages/ProductDetail'));
 
@@ -56,6 +57,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/panier" element={<Cart />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/merci" element={<OrderThanks />} />
             <Route path="/produit/:id" element={
               <Suspense fallback={<LoadingFallback />}>
                 <ProductDetail />
