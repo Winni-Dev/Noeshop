@@ -121,8 +121,8 @@
 //             }}
 //           >
 //             {/* Contenu principal */}
-//             <div className="relative h-screen flex items-center justify-center px-4 md:px-8">
-//               <div className="text-center max-w-3xl w-full">
+//             <div className="relative flex items-center justify-center h-screen px-4 md:px-8">
+//               <div className="w-full max-w-3xl text-center">
 //                 {/* Titre principal */}
 //                 <div
 //                   style={{
@@ -132,7 +132,7 @@
 //                     transitionDelay: '0.2s',
 //                     willChange: 'opacity, transform',
 //                   }}
-//                   className="text-lg md:text-xl lg:text-2xl text-white/90 mb-4 md:mb-6 font-medium leading-relaxed"
+//                   className="mb-4 text-lg font-medium leading-relaxed md:text-xl lg:text-2xl text-white/90 md:mb-6"
 //                 >
 //                   {slide.title}
 //                 </div>
@@ -146,7 +146,7 @@
 //                     transitionDelay: '0.3s',
 //                     willChange: 'opacity, transform',
 //                   }}
-//                   className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 md:mb-4"
+//                   className="mb-3 text-3xl font-bold text-white md:text-4xl lg:text-5xl md:mb-4"
 //                 >
 //                   {slide.subtitle}
 //                 </div>
@@ -160,7 +160,7 @@
 //                     transitionDelay: '0.4s',
 //                     willChange: 'opacity, transform',
 //                   }}
-//                   className="text-base md:text-lg text-white/80 mb-6 md:mb-8 max-w-xl mx-auto"
+//                   className="max-w-xl mx-auto mb-6 text-base md:text-lg text-white/80 md:mb-8"
 //                 >
 //                   {slide.description}
 //                 </div>
@@ -176,7 +176,7 @@
 //                 transitionDelay: '0.5s',
 //                 willChange: 'opacity, transform',
 //               }}
-//               className="absolute bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2"
+//               className="absolute transform -translate-x-1/2 bottom-6 md:bottom-8 left-1/2"
 //             >
 //               <motion.button
 //                 whileHover={{ scale: 1.05 }}
@@ -194,7 +194,7 @@
 //                 }}
 //               >
 //                 Découvrir
-//                 <ArrowRight className="ml-2 md:ml-3 inline" size={16} />
+//                 <ArrowRight className="inline ml-2 md:ml-3" size={16} />
 //               </motion.button>
 //             </div>
 //           </div>
@@ -202,16 +202,16 @@
 //       </div>
 
 //       {/* Points indicateurs */}
-//       <div className="absolute bottom-24 md:bottom-32 left-1/2 -translate-x-1/2 flex space-x-2 z-30">
+//       <div className="absolute z-30 flex space-x-2 -translate-x-1/2 bottom-24 md:bottom-32 left-1/2">
 //         {slides.map((_, index) => (
 //           <button
 //             key={index}
 //             onClick={() => setCurrentSlide(index)}
-//             className="focus:outline-none p-1"
+//             className="p-1 focus:outline-none"
 //             aria-label={`Aller au slide ${index + 1}`}
 //           >
 //             <div
-//               className="h-2 rounded-full bg-white transition-all duration-300"
+//               className="h-2 transition-all duration-300 bg-white rounded-full"
 //               style={{
 //                 width: currentSlide === index ? '24px' : '8px',
 //                 opacity: currentSlide === index ? 1 : 0.5,
@@ -226,7 +226,7 @@
 //       {/* Boutons de navigation */}
 //       <button
 //         onClick={prevSlide}
-//         className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/60 transition-colors z-30"
+//         className="absolute z-30 flex items-center justify-center w-10 h-10 transition-colors -translate-y-1/2 rounded-full left-2 md:left-4 top-1/2 md:w-12 md:h-12 bg-black/40 backdrop-blur-sm hover:bg-black/60"
 //         aria-label="Précédent"
 //         style={{
 //           transform: 'translateY(-50%) translateZ(0)',
@@ -238,7 +238,7 @@
       
 //       <button
 //         onClick={nextSlide}
-//         className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/60 transition-colors z-30"
+//         className="absolute z-30 flex items-center justify-center w-10 h-10 transition-colors -translate-y-1/2 rounded-full right-2 md:right-4 top-1/2 md:w-12 md:h-12 bg-black/40 backdrop-blur-sm hover:bg-black/60"
 //         aria-label="Suivant"
 //         style={{
 //           transform: 'translateY(-50%) translateZ(0)',
@@ -249,10 +249,10 @@
 //       </button>
 
 //       {/* Bouton play/pause */}
-//       <div className="absolute bottom-6 md:bottom-8 right-4 md:right-8 z-30">
+//       <div className="absolute z-30 bottom-6 md:bottom-8 right-4 md:right-8">
 //         <button
 //           onClick={() => setAutoPlay(!autoPlay)}
-//           className="w-10 h-10 md:w-12 md:h-12 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/60 transition-colors"
+//           className="flex items-center justify-center w-10 h-10 transition-colors rounded-full md:w-12 md:h-12 bg-black/40 backdrop-blur-sm hover:bg-black/60"
 //           aria-label={autoPlay ? "Mettre en pause" : "Lancer la lecture"}
 //           style={{
 //             transform: 'translateZ(0)',
@@ -268,8 +268,8 @@
 //       </div>
 
 //       {/* Indicateur de slide */}
-//       <div className="absolute bottom-6 md:bottom-8 left-4 md:left-8 z-30">
-//         <div className="text-white text-sm md:text-base">
+//       <div className="absolute z-30 bottom-6 md:bottom-8 left-4 md:left-8">
+//         <div className="text-sm text-white md:text-base">
 //           <span className="font-bold">0{currentSlide + 1}</span>
 //           <span className="mx-1 md:mx-2">/</span>
 //           <span className="text-white/70">0{slides.length}</span>
@@ -320,7 +320,7 @@ const Hero: React.FC = () => {
       image: slimBreathe,
       title: 'Retrouvez une silhouette affinée et une santé intime renforcée',
       subtitle: 'SlimBreathe',
-      description: 'Appareil de gymnastique respiratoire hypopressive pour ventre plat et tonus du périnée. Améliore votre souffle et endurance. Écran intelligent avec compteur automatique. 12 000 FCFA avec livraison partout à Abidjan.',
+      description: 'Appareil de gymnastique respiratoire hypopressive pour ventre plat et tonus du périnée. Améliore votre souffle et endurance. Écran intelligent avec compteur automatique. 14 000 FCFA avec livraison partout à Abidjan.',
       color: 'purple'
     }
   ];
@@ -404,8 +404,8 @@ const Hero: React.FC = () => {
             }}
           >
             {/* Contenu principal */}
-            <div className="relative h-screen flex items-center justify-center px-4 md:px-8">
-              <div className="text-center max-w-3xl w-full">
+            <div className="relative flex items-center justify-center h-screen px-4 md:px-8">
+              <div className="w-full max-w-3xl text-center">
                 {/* Titre principal */}
                 <div
                   style={{
@@ -415,7 +415,7 @@ const Hero: React.FC = () => {
                     transitionDelay: '0.2s',
                     willChange: 'opacity, transform',
                   }}
-                  className="text-lg md:text-xl lg:text-2xl text-white/90 mb-4 md:mb-6 font-medium leading-relaxed"
+                  className="mb-4 text-lg font-medium leading-relaxed md:text-xl lg:text-2xl text-white/90 md:mb-6"
                 >
                   {slide.title}
                 </div>
@@ -429,7 +429,7 @@ const Hero: React.FC = () => {
                     transitionDelay: '0.3s',
                     willChange: 'opacity, transform',
                   }}
-                  className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 md:mb-4"
+                  className="mb-3 text-3xl font-bold text-white md:text-4xl lg:text-5xl md:mb-4"
                 >
                   {slide.subtitle}
                 </div>
@@ -443,7 +443,7 @@ const Hero: React.FC = () => {
                     transitionDelay: '0.4s',
                     willChange: 'opacity, transform',
                   }}
-                  className="text-base md:text-lg text-white/80 mb-6 md:mb-8 max-w-xl mx-auto"
+                  className="max-w-xl mx-auto mb-6 text-base md:text-lg text-white/80 md:mb-8"
                 >
                   {slide.description}
                 </div>
@@ -459,7 +459,7 @@ const Hero: React.FC = () => {
                 transitionDelay: '0.5s',
                 willChange: 'opacity, transform',
               }}
-              className="absolute bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2"
+              className="absolute transform -translate-x-1/2 bottom-6 md:bottom-8 left-1/2"
             >
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -477,7 +477,7 @@ const Hero: React.FC = () => {
                 }}
               >
                 Découvrir
-                <ArrowRight className="ml-2 md:ml-3 inline" size={16} />
+                <ArrowRight className="inline ml-2 md:ml-3" size={16} />
               </motion.button>
             </div>
           </div>
@@ -485,16 +485,16 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Points indicateurs */}
-      <div className="absolute bottom-24 md:bottom-32 left-1/2 -translate-x-1/2 flex space-x-2 z-30">
+      <div className="absolute z-30 flex space-x-2 -translate-x-1/2 bottom-24 md:bottom-32 left-1/2">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className="focus:outline-none p-1"
+            className="p-1 focus:outline-none"
             aria-label={`Aller au slide ${index + 1}`}
           >
             <div
-              className="h-2 rounded-full bg-white transition-all duration-300"
+              className="h-2 transition-all duration-300 bg-white rounded-full"
               style={{
                 width: currentSlide === index ? '24px' : '8px',
                 opacity: currentSlide === index ? 1 : 0.5,
@@ -509,7 +509,7 @@ const Hero: React.FC = () => {
       {/* Boutons de navigation */}
       <button
         onClick={prevSlide}
-        className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/60 transition-colors z-30"
+        className="absolute z-30 flex items-center justify-center w-10 h-10 transition-colors -translate-y-1/2 rounded-full left-2 md:left-4 top-1/2 md:w-12 md:h-12 bg-black/40 backdrop-blur-sm hover:bg-black/60"
         aria-label="Précédent"
         style={{
           transform: 'translateY(-50%) translateZ(0)',
@@ -521,7 +521,7 @@ const Hero: React.FC = () => {
       
       <button
         onClick={nextSlide}
-        className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/60 transition-colors z-30"
+        className="absolute z-30 flex items-center justify-center w-10 h-10 transition-colors -translate-y-1/2 rounded-full right-2 md:right-4 top-1/2 md:w-12 md:h-12 bg-black/40 backdrop-blur-sm hover:bg-black/60"
         aria-label="Suivant"
         style={{
           transform: 'translateY(-50%) translateZ(0)',
@@ -532,10 +532,10 @@ const Hero: React.FC = () => {
       </button>
 
       {/* Bouton play/pause */}
-      <div className="absolute bottom-6 md:bottom-8 right-4 md:right-8 z-30">
+      <div className="absolute z-30 bottom-6 md:bottom-8 right-4 md:right-8">
         <button
           onClick={() => setAutoPlay(!autoPlay)}
-          className="w-10 h-10 md:w-12 md:h-12 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/60 transition-colors"
+          className="flex items-center justify-center w-10 h-10 transition-colors rounded-full md:w-12 md:h-12 bg-black/40 backdrop-blur-sm hover:bg-black/60"
           aria-label={autoPlay ? "Mettre en pause" : "Lancer la lecture"}
           style={{
             transform: 'translateZ(0)',
@@ -551,8 +551,8 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Indicateur de slide */}
-      <div className="absolute bottom-6 md:bottom-8 left-4 md:left-8 z-30">
-        <div className="text-white text-sm md:text-base">
+      <div className="absolute z-30 bottom-6 md:bottom-8 left-4 md:left-8">
+        <div className="text-sm text-white md:text-base">
           <span className="font-bold">0{currentSlide + 1}</span>
           <span className="mx-1 md:mx-2">/</span>
           <span className="text-white/70">0{slides.length}</span>
