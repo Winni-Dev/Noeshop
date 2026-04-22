@@ -320,7 +320,7 @@ const Hero: React.FC = () => {
       image: slimBreathe,
       title: 'Retrouvez une silhouette affinée et une santé intime renforcée',
       subtitle: 'SlimBreathe',
-      description: 'Appareil de gymnastique respiratoire hypopressive pour ventre plat et tonus du périnée. Améliore votre souffle et endurance. Écran intelligent avec compteur automatique. 14 000 FCFA avec livraison partout à Abidjan.',
+      description: 'Appareil de gymnastique respiratoire hypopressive pour ventre plat et tonus du périnée. Améliore votre souffle et endurance. 14 000 FCFA avec livraison partout à Abidjan.',
       color: 'purple'
     }
   ];

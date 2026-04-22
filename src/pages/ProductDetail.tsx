@@ -752,7 +752,6 @@ import {
   Timer,
   Gauge,
   Wind,
-  Brain,
   Baby,
   AirVent
 } from 'lucide-react';
@@ -893,7 +892,7 @@ const ProductDetail: React.FC = () => {
                     <p className="mt-1 text-xs font-semibold text-amber-600">✓ 20 gélules (1 mois de cure)</p>
                   )}
                   {product.id === 2 && (
-                    <p className="mt-1 text-xs font-semibold text-teal-600">✓ Écran intelligent avec compteur</p>
+                    <p className="mt-1 text-xs font-semibold text-teal-600">✓ Suivi de progression simplifié</p>
                   )}
                 </div>
                 {product.id === 1 && (
@@ -903,7 +902,7 @@ const ProductDetail: React.FC = () => {
                 )}
                 {product.id === 2 && (
                   <div className="px-2 py-1 text-teal-800 bg-teal-100 rounded-lg">
-                    <p className="text-xs font-semibold">Écran intelligent</p>
+                    <p className="text-xs font-semibold">Suivi progression</p>
                   </div>
                 )}
               </div>
@@ -1047,7 +1046,7 @@ const ProductDetail: React.FC = () => {
                       </p>
                     </div>
                     <p className="mt-1 text-xs text-gray-500">
-                      {product.id === 1 ? 'Cure de 20 gélules (1 mois)' : 'Appareil avec écran intelligent'}
+                      {product.id === 1 ? 'Cure de 20 gélules (1 mois)' : 'Appareil de gymnastique respiratoire'}
                     </p>
                   </div>
                   {product.id === 1 && (
@@ -1057,7 +1056,7 @@ const ProductDetail: React.FC = () => {
                   )}
                   {product.id === 2 && (
                     <div className="px-3 py-2 text-teal-800 bg-teal-100 rounded-lg">
-                      <p className="text-sm font-semibold">Écran intelligent</p>
+                      <p className="text-sm font-semibold">SlimBreathe</p>
                     </div>
                   )}
                 </div>
@@ -1259,7 +1258,6 @@ const SlimBreatheDescription: React.FC = () => (
           { icon: Wind, title: "Respiration Hypopressive", benefits: ["Muscles profonds", "Ventre plat"] },
           { icon: Baby, title: "Rééducation du Périnée", benefits: ["Idéal post-accouchement", "Tonus renforcé"] },
           { icon: AirVent, title: "Capacité Respiratoire", benefits: ["Souffle amélioré", "Endurance physique"] },
-          { icon: Brain, title: "Écran Intelligent", benefits: ["Suivi en temps réel", "Compteur automatique"] },
         ].map((feature, index) => (
           <motion.div
             key={feature.title}
@@ -1297,10 +1295,10 @@ const SlimBreatheDescription: React.FC = () => (
             <div className="text-2xl font-bold">Périnée</div>
             <p className="text-sm text-teal-100">Tonus renforcé</p>
           </div>
-          <div className="text-center">
+          {/* <div className="text-center">
             <div className="text-2xl font-bold">Écran</div>
             <p className="text-sm text-teal-100">Suivi intelligent</p>
-          </div>
+          </div> */}
           <div className="text-center">
             <div className="text-2xl font-bold">14k FCFA</div>
             <p className="text-sm text-teal-100">Livraison incluse</p>

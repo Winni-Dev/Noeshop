@@ -964,7 +964,6 @@ import {
   Timer,
   Wind,
   Baby,
-  Brain,
   Activity,
   Droplets,
   ArrowRight
@@ -1110,12 +1109,6 @@ const About: React.FC = () => {
       description: 'Développez votre capacité respiratoire et votre endurance physique.',
       icon: <Heart className="text-green-500" size={32} />,
       details: ['Souffle amélioré', 'Endurance accrue', 'Performance sportive']
-    },
-    {
-      title: 'Suivi Intelligent',
-      description: 'Écran intelligent avec compteur automatique pour suivre vos progrès.',
-      icon: <Brain className="text-purple-500" size={32} />,
-      details: ['Suivi en temps réel', 'Progrès visibles', 'Motivation quotidienne']
     }
   ];
 
@@ -1187,11 +1180,6 @@ const About: React.FC = () => {
       icon: <Activity className="text-blue-500" size={20} />,
       title: 'Capacité Respiratoire',
       description: 'Améliore votre souffle et votre endurance physique'
-    },
-    {
-      icon: <Brain className="text-purple-500" size={20} />,
-      title: 'Écran Intelligent',
-      description: 'Suivez vos progrès en temps réel avec compteur automatique'
     }
   ];
 
@@ -1691,7 +1679,7 @@ const About: React.FC = () => {
                   </h3>
                   <p className="mb-4 text-sm leading-relaxed text-gray-700 md:mb-6 md:text-base">
                     SlimBreathe est un appareil de gymnastique respiratoire qui utilise la méthode hypopressive 
-                    pour travailler les muscles profonds de la sangle abdominale. Compact et intelligent, il est 
+                    pour travailler les muscles profonds de la sangle abdominale. Compact et pratique, il est 
                     votre meilleur allié pour un ventre plat et un périnée renforcé.
                   </p>
                   <div className="p-4 mb-6 bg-white/60 rounded-xl md:p-6">
@@ -1720,7 +1708,6 @@ const About: React.FC = () => {
                     <div className="grid grid-cols-2 gap-3 md:gap-4">
                       {[
                         { name: 'Méthode Hypopressive', benefit: 'Muscles profonds', icon: <Wind className="text-teal-600" size={16} />, color: 'from-teal-50 to-teal-100' },
-                        { name: 'Écran intelligent', benefit: 'Suivi en temps réel', icon: <Brain className="text-purple-600" size={16} />, color: 'from-purple-50 to-purple-100' },
                         { name: 'Rééducation périnée', benefit: 'Idéal post-accouchement', icon: <Baby className="text-pink-600" size={16} />, color: 'from-pink-50 to-pink-100' },
                         { name: 'Endurance physique', benefit: 'Souffle amélioré', icon: <Activity className="text-blue-600" size={16} />, color: 'from-blue-50 to-blue-100' }
                       ].map((feature, index) => (
@@ -1784,7 +1771,6 @@ const About: React.FC = () => {
                     'Ventre plat : cible le bas-ventre durablement',
                     'Rééducation du périnée : idéal après accouchement',
                     'Capacité respiratoire : souffle et endurance améliorés',
-                    'Écran intelligent : suivi des progrès en temps réel',
                     'Compact et pratique : utilisation quotidienne facile',
                     'Livraison partout à Abidjan'
                   ].map((benefit, index) => (
