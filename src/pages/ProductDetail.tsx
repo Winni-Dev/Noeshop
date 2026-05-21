@@ -1300,7 +1300,7 @@ const SlimBreatheDescription: React.FC = () => (
             <p className="text-sm text-teal-100">Suivi intelligent</p>
           </div> */}
           <div className="text-center">
-            <div className="text-2xl font-bold">14k FCFA</div>
+            <div className="text-2xl font-bold">6500 FCFA</div>
             <p className="text-sm text-teal-100">Livraison incluse</p>
           </div>
         </div>
