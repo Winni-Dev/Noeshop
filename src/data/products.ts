@@ -108,7 +108,7 @@ export const products: Product[] = [
     id: 2,
     name: 'SlimBreathe',
     description: 'Appareil de gymnastique respiratoire hypopressive pour ventre plat et tonus du périnée. Compact et pratique, il améliore votre souffle et votre endurance physique.',
-    price: 14000,
+    price: 6500,
     benefits: [
       'Méthode de respiration hypopressive - muscles profonds',
       'Ventre plat - cible le bas-ventre durablement',
