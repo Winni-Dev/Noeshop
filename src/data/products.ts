@@ -84,6 +84,7 @@
 import { Product } from '../types';
 import seveDeVieImage from '../IMAGES/gelule.jpeg';
 import slimBreatheImage from '../IMAGES/machine.jpeg';
+import Pomadeee from '../IMAGES/pommadeee.webp'
 
 export const products: Product[] = [
   {
@@ -118,6 +119,22 @@ export const products: Product[] = [
     ],
     image: slimBreatheImage,
     badge: 'APPAREIL RESPIRATOIRE',
+    originalPrice: null,
+    inStock: true
+  },
+  {
+    id: 3,
+    name: 'Pommade Naturelle',
+    description: 'Pommade naturelle 100% naturelle pour apaiser les douleurs musculaires et articulaires avec un effet anti-inflammatoire et hydratant.',
+    price: 6500,
+    benefits: [
+      'Soulagement des douleurs musculaires et articulaires',
+      'Action anti-inflammatoire naturelle',
+      'Hydratation profonde et confort au quotidien',
+      'Sans produits chimiques'
+    ],
+    image: Pomadeee,
+    badge: 'POMMADE NATURELLE',
     originalPrice: null,
     inStock: true
   }

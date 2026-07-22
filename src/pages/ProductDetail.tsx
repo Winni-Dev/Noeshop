@@ -1128,6 +1128,8 @@ const ProductDetail: React.FC = () => {
       <div className="max-w-4xl px-4 pb-8 mx-auto">
         {product.id === 1 ? (
           <SeveDeVieDescription />
+        ) : product.id === 3 ? (
+          <PommadeDescription />
         ) : (
           <SlimBreatheDescription />
         )}
@@ -1295,13 +1297,79 @@ const SlimBreatheDescription: React.FC = () => (
             <div className="text-2xl font-bold">Périnée</div>
             <p className="text-sm text-teal-100">Tonus renforcé</p>
           </div>
-          {/* <div className="text-center">
-            <div className="text-2xl font-bold">Écran</div>
-            <p className="text-sm text-teal-100">Suivi intelligent</p>
-          </div> */}
           <div className="text-center">
             <div className="text-2xl font-bold">6500 FCFA</div>
             <p className="text-sm text-teal-100">Livraison incluse</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </motion.div>
+);
+
+const PommadeDescription: React.FC = () => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    className="mt-6 overflow-hidden bg-white border border-gray-100 shadow-lg lg:mt-8 rounded-2xl"
+  >
+    <div className="p-5 lg:p-8">
+      <div className="mb-6 text-center lg:mb-8">
+        <h2 className="mb-2 text-xl font-bold text-gray-900 lg:text-2xl lg:mb-3">Pommade Naturelle™</h2>
+        <p className="text-sm text-gray-600 lg:text-base">Soulagement naturel des douleurs musculaires et articulaires</p>
+      </div>
+
+      <div className="p-4 mb-6 bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl lg:p-6 lg:mb-8">
+        <p className="text-base font-semibold text-center text-gray-900 lg:text-lg">
+          "Un soin naturel pour retrouver confort, mobilité et bien-être au quotidien"
+        </p>
+      </div>
+
+      <div className="grid gap-4 mb-6 sm:grid-cols-2 lg:grid-cols-4 lg:mb-8">
+        {[
+          { icon: Zap, title: "Soulagement rapide", benefits: ["Douleurs apaisées", "Confort immédiat"] },
+          { icon: Shield, title: "100% Naturel", benefits: ["Sans produits chimiques", "Hydratation profonde"] },
+          { icon: Gauge, title: "Confort au quotidien", benefits: ["Mobilité retrouvée", "Usage simple"] },
+        ].map((feature, index) => (
+          <motion.div
+            key={feature.title}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.1 }}
+            className="p-4 shadow-sm bg-gradient-to-br from-white to-amber-50 rounded-xl"
+          >
+            <div className="flex items-center justify-center w-10 h-10 mb-3 bg-amber-100 rounded-lg lg:w-12 lg:h-12">
+              <feature.icon className="w-5 h-5 text-amber-600 lg:w-6 lg:h-6" />
+            </div>
+            <h3 className="mb-2 text-base font-bold text-gray-900 lg:text-lg">{feature.title}</h3>
+            <ul className="space-y-1">
+              {feature.benefits.map((item, idx) => (
+                <li key={idx} className="flex items-center text-sm text-gray-600">
+                  <CheckCircle className="flex-shrink-0 w-3 h-3 mr-2 text-green-500 lg:w-4 lg:h-4" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="p-5 text-white bg-gradient-to-r from-amber-600 to-orange-600 rounded-xl lg:p-6">
+        <h3 className="mb-4 text-lg font-bold text-center">Pourquoi vous allez l'adorer</h3>
+        <div className="grid grid-cols-2 gap-4">
+          <div className="text-center">
+            <div className="text-2xl font-bold">Soulagement</div>
+            <p className="text-sm text-amber-100">Douleurs musculaires & articulaires</p>
+          </div>
+          <div className="text-center">
+            <div className="text-2xl font-bold">Anti-inflammatoire</div>
+            <p className="text-sm text-amber-100">Action naturelle</p>
+          </div>
+          <div className="text-center">
+            <div className="text-2xl font-bold">6500 FCFA</div>
+            <p className="text-sm text-amber-100">Livraison incluse</p>
           </div>
         </div>
       </div>
