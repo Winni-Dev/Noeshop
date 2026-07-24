@@ -68,7 +68,7 @@ const OrderPopup: React.FC<OrderPopupProps> = ({ isOpen, onClose }) => {
       `💳 Mode paiement: ${getPaymentMethod(formData.location)}\n` +
       (formData.notes ? `\n📝 Notes: ${formData.notes}` : '');
 
-    const whatsappUrl = `https://wa.me/2250712681195?text=${encodeURIComponent(messageText)}`;
+    const whatsappUrl = `https://wa.me/2250714113978?text=${encodeURIComponent(messageText)}`;
 
     const pending = {
       orderId,
@@ -80,7 +80,7 @@ const OrderPopup: React.FC<OrderPopupProps> = ({ isOpen, onClose }) => {
       source: 'cart' as const,
       paymentMethod: getPaymentMethod(formData.location),
       location: getLocationText(formData.location),
-      phoneDestination: '+2250712681195',
+      phoneDestination: '+2250714113978',
       metaTracked: true,
     };
     try {

@@ -64,7 +64,7 @@ const ProductOrderForm: React.FC<ProductOrderFormProps> = ({ product, quantity, 
       `💳 Mode paiement: ${getPaymentMethod(formData.location)}\n` +
       (formData.notes ? `\n📝 Notes: ${formData.notes}` : '');
 
-    const whatsappUrl = `https://wa.me/2250712681195?text=${encodeURIComponent(messageText)}`;
+    const whatsappUrl = `https://wa.me/2250714113978?text=${encodeURIComponent(messageText)}`;
 
     // Stocke le contenu pour la page de confirmation (et pour garder un lien WhatsApp identique)
     const pending = {
@@ -77,7 +77,7 @@ const ProductOrderForm: React.FC<ProductOrderFormProps> = ({ product, quantity, 
       source: 'product_detail' as const,
       paymentMethod: getPaymentMethod(formData.location),
       location: getLocationText(formData.location),
-      phoneDestination: '+2250712681195',
+      phoneDestination: '+2250714113978',
       metaTracked: true,
     };
     try {

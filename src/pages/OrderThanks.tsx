@@ -33,7 +33,7 @@ function getPendingOrderFromSession(orderId: string | null): PendingWhatsappOrde
 }
 
 function buildWhatsAppUrl(message: string) {
-  const phone = '2250712681195'; // Format attendu par wa.me (sans +)
+  const phone = '2250714113978'; // Format attendu par wa.me (sans +)
   return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 }
 
