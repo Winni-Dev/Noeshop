@@ -1128,8 +1128,12 @@ const ProductDetail: React.FC = () => {
       <div className="max-w-4xl px-4 pb-8 mx-auto">
         {product.id === 1 ? (
           <SeveDeVieDescription />
+        ) : product.id === 2 ? (
+          <SlimBreatheDescription />
         ) : product.id === 3 ? (
           <PommadeDescription />
+        ) : product.id === 4 ? (
+          <BraceletDescription />
         ) : (
           <SlimBreatheDescription />
         )}
@@ -1307,6 +1311,73 @@ const SlimBreatheDescription: React.FC = () => (
   </motion.div>
 );
 
+const BraceletDescription: React.FC = () => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    className="mt-6 overflow-hidden bg-white border border-gray-100 shadow-lg lg:mt-8 rounded-2xl"
+  >
+    <div className="p-5 lg:p-8">
+      <div className="mb-6 text-center lg:mb-8">
+        <h2 className="mb-2 text-xl font-bold text-gray-900 lg:text-2xl lg:mb-3">Bracelet d'accompagnement Noéva</h2>
+        <p className="text-sm text-gray-600 lg:text-base">Édition Pierre Naturelle Authentique</p>
+      </div>
+
+      <div className="p-4 mb-6 bg-gradient-to-r from-slate-50 to-slate-100 rounded-xl lg:p-6 lg:mb-8">
+        <p className="text-base font-semibold text-center text-gray-900 lg:text-lg">
+          Pierre 100% naturelle aux facettes géométriques et reflets gris métallisés.
+        </p>
+      </div>
+
+      <div className="grid gap-4 mb-6 sm:grid-cols-2 lg:grid-cols-4 lg:mb-8">
+        {[
+          { icon: Shield, title: 'Non magnétique', benefits: ['Aucune interférence avec pacemakers', 'Sans impact sur l’insuline'] },
+          { icon: Zap, title: 'Action optimisée', benefits: ['Plus puissante', 'Plus rapide au quotidien'] },
+          { icon: CheckCircle, title: 'Corde ultra-résistante', benefits: ['Renforcée', 'Conçue pour durer'] },
+          { icon: Star, title: 'Signature exclusive', benefits: ['Perle tubulaire gravée', 'Authenticité Noéva'] },
+        ].map((feature, index) => (
+          <motion.div
+            key={feature.title}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.1 }}
+            className="p-4 shadow-sm bg-gradient-to-br from-white to-slate-50 rounded-xl"
+          >
+            <div className="flex items-center justify-center w-10 h-10 mb-3 rounded-lg bg-slate-100 lg:w-12 lg:h-12">
+              <feature.icon className="w-5 h-5 text-slate-600 lg:w-6 lg:h-6" />
+            </div>
+            <h3 className="mb-2 text-base font-bold text-gray-900 lg:text-lg">{feature.title}</h3>
+            <ul className="space-y-1">
+              {feature.benefits.map((item, idx) => (
+                <li key={idx} className="flex items-center text-sm text-gray-600">
+                  <CheckCircle className="flex-shrink-0 w-3 h-3 mr-2 text-green-500 lg:w-4 lg:h-4" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="p-5 text-white bg-gradient-to-r from-slate-700 to-slate-900 rounded-xl lg:p-6">
+        <h3 className="mb-4 text-lg font-bold text-center">Test de qualité</h3>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="text-center">
+            <div className="text-2xl font-bold">Pierre authentique</div>
+            <p className="text-sm text-slate-200">Trace marron brune sur porcelaine brute</p>
+          </div>
+          <div className="text-center">
+            <div className="text-2xl font-bold">Sécurité maximale</div>
+            <p className="text-sm text-slate-200">Compatible diabète et hypertension</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </motion.div>
+);
+
 const PommadeDescription: React.FC = () => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
@@ -1340,7 +1411,7 @@ const PommadeDescription: React.FC = () => (
             transition={{ delay: index * 0.1 }}
             className="p-4 shadow-sm bg-gradient-to-br from-white to-amber-50 rounded-xl"
           >
-            <div className="flex items-center justify-center w-10 h-10 mb-3 bg-amber-100 rounded-lg lg:w-12 lg:h-12">
+            <div className="flex items-center justify-center w-10 h-10 mb-3 rounded-lg bg-amber-100 lg:w-12 lg:h-12">
               <feature.icon className="w-5 h-5 text-amber-600 lg:w-6 lg:h-6" />
             </div>
             <h3 className="mb-2 text-base font-bold text-gray-900 lg:text-lg">{feature.title}</h3>

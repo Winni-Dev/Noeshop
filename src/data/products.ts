@@ -85,6 +85,7 @@ import { Product } from '../types';
 import seveDeVieImage from '../IMAGES/gelule.jpeg';
 import slimBreatheImage from '../IMAGES/machine.jpeg';
 import Pomadeee from '../IMAGES/pommadeee.webp'
+import braceeImage from '../IMAGES/bracee.jpeg';
 
 export const products: Product[] = [
   {
@@ -135,6 +136,23 @@ export const products: Product[] = [
     ],
     image: Pomadeee,
     badge: 'POMMADE NATURELLE',
+    originalPrice: null,
+    inStock: true
+  },
+  {
+    id: 4,
+    name: 'Bracelet d\'accompagnement Noéva – Édition Pierre Naturelle Authentique',
+    description: 'Pierre 100% naturelle avec facettes géométriques et reflets gris métallisés. Corde ultra-résistante, zéro magnétisme pour ne pas interférer avec pacemakers et insuline, et perle tubulaire gravée du logo officiel Noéva.',
+    price: 18500,
+    benefits: [
+      'Pierre 100% naturelle et haut de gamme',
+      '100% non magnétique : compatible pacemakers et insuline',
+      'Action optimisée, plus puissante et plus rapide',
+      'Cordon ultra-résistant conçu pour durer',
+      'Signature exclusive : perle gravée Noéva'
+    ],
+    image: braceeImage,
+    badge: 'BRACELET NOÉVA',
     originalPrice: null,
     inStock: true
   }
