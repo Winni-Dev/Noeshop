@@ -143,7 +143,7 @@ export const products: Product[] = [
     id: 4,
     name: 'Bracelet d\'accompagnement Noéva – Édition Pierre Naturelle Authentique',
     description: 'Pierre 100% naturelle avec facettes géométriques et reflets gris métallisés. Corde ultra-résistante, zéro magnétisme pour ne pas interférer avec pacemakers et insuline, et perle tubulaire gravée du logo officiel Noéva.',
-    price: 14000,
+    price: 10000,
     benefits: [
       'Pierre 100% naturelle et haut de gamme',
       '100% non magnétique : compatible pacemakers et insuline',
